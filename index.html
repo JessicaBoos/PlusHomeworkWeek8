@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lemon&family=Permanent+Marker&family=Vina+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lemon&family=Permanent+Marker&family=Vina+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div class="app">
+      <form id="search-form">
+        <input
+          type="search"
+          placeholder="Enter a city.."
+          required
+          class="search-input"
+          id="search-input"
+        />
+        <input type="submit" value="⌕" class="search-button" />
+      </form>
+
+      <main>
+        <div class="current-weather">
+          <div>
+            <h1 class="current-city" id="current-city"></h1>
+            <hr />
+            <p class="current-details">
+              <span id="current-date"></span>,
+              <span id="weather-condition">moderate rain </span>, Humidity:
+              <strong id="weather-humidity">87%</strong>, Wind:
+              <strong id="weather-wind">7.2km/h</strong>
+            </p>
+            <hr />
+          </div>
+          <div class="current-temperature">
+            <span id="current-temperature-icon"
+              ><img
+                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+                class="weather-app-icon" /></span
+            ><span
+              class="current-temperature-value"
+              id="current-temperature"
+            ></span
+            ><span class="current-temperature-unit"> °C</span>
+          </div>
+          <hr />
+        </div>
+        <div class="weather-forecast-day">
+          <div class="row">
+            <div class="col-2">
+              Saturday
+              <img src="src/pictures/Weather-few-clouds.png" width="70px" />
+              <div>
+                <span class="temp-max">18°C</span> -
+                <span class="temp-min">12°C</span>
+              </div>
+            </div>
+            <div class="col-2">
+              Sunday
+              <img src="src/pictures/Weather-few-clouds.png" width="70px" />
+              <div>
+                <span class="temp-max">18°C</span> -
+                <span class="temp-min">12°C</span>
+              </div>
+            </div>
+            <div class="col-2">
+              Monday
+              <img src="src/pictures/Weather-few-clouds.png" width="70px" />
+              <div>
+                <span class="temp-max">18°C</span> -
+                <span class="temp-min">12°C</span>
+              </div>
+            </div>
+            <div class="col-2">
+              Tuesday
+              <img src="src/pictures/Weather-few-clouds.png" width="70px" />
+              <div>
+                <span class="temp-max">18°C</span> -
+                <span class="temp-min">12°C</span>
+              </div>
+            </div>
+            <div class="col-2">
+              Wednesday
+              <img src="src/pictures/Weather-few-clouds.png" width="70px" />
+              <div>
+                <span class="temp-max">18°C</span> -
+                <span class="temp-min">12°C</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <hr />
+      <div class="details">
+        Project coded by
+        <a
+          href="https://www.shecodes.io/graduates/104550-jessica-boos"
+          target="_blank"
+          >Jessica Boos,</a
+        >
+        published on
+        <a
+          href="https://github.com/JessicaBoos/PlusHomeworkWeek7"
+          target="_blank"
+        >
+          GitHub</a
+        >
+        and
+        <a href="https://clever-meringue-5ef2fe.netlify.app" target="_blank"
+          >hosted on Netlify</a
+        >
+      </div>
+    </div>
+  </body>
+  <script src="src/index.js"></script>
+</html>
