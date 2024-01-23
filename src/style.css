@@ -70,21 +70,22 @@ body {
 }
 
 .weather-forecast-day {
-  display: flex;
-  justify-content: cen;
-}
-.temp-min {
-  color: #a393eb;
-}
-
-.row {
-  font-size: 21px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.col-2 {
   display: inline-block;
+  width: 50%; /* Adjust the width as needed */
+  padding: 10px;
+}
+.weather-forecast-temperature {
+  color: #5e63b6;
+}
+
+.weather-forecast-date {
+  font-size: 21px;
+  text-align: center;
+}
+
+.icon {
+  display: flex;
+  justify-content: space-around;
 }
 
 h1 {
@@ -121,7 +122,8 @@ input[type="search"]::placeholder {
 
 .weather-forecast-icon {
   font-size: 28px;
-  text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 .weather-forecast-temperatures {
   text-align: center;
