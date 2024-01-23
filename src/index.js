@@ -40,26 +40,39 @@ function updateWeather(response) {
   let windElement = document.querySelector("#weather-wind");
   windElement.innerHTML = `${response.data.wind.speed} km/h`;
   replaceIcon(response.data.condition.description);
+  getForecast("response.data.city");
 }
-function displayForecast() {
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat"];
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
+}
+
+function displayForecast(response) {
   let forecastHtml = "";
 
-  days.forEach(function (day) {
-    forecastHtml =
-      forecastHtml +
-      `
+  response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+      forecastHtml =
+        forecastHtml +
+        `
       <div class="weather-forecast-day">
-        <div class="weather-forecast-date">${day}</div>
-         <span class="weather-forecast-icon"><img src="src/pictures/Weather-few-clouds.png" width="70px" /> </span>
+        <div class="weather-forecast-date">${formatDay(day.time)}</div>
+         <span class="weather-forecast-icon"><img src="${replaceIcon(
+           day.condition.description
+         )}" width="70px" /> </span>
         <div class="weather-forecast-temperatures">
           <div class="weather-forecast-temperature">
-            <strong>15º</strong>
+            <strong>${Math.round(day.temperature.maximum)}º</strong>
           </div>
-          <div class="weather-forecast-temperature">9º</div>
+          <div class="weather-forecast-temperature">${Math.round(
+            day.temperature.minimum
+          )}º</div>
         </div>
       </div>
-    `;
+      `;
+    }
   });
 
   let forecastElement = document.querySelector("#forecast");
@@ -99,6 +112,12 @@ function formatDate(date) {
   return `${formattedDay} ${hours}:${minutes}`;
 }
 
+function getForecast(city) {
+  let apiKey = "bb5982aa3c1a3d9fb3839bo024tffc09";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 let currentDateELement = document.querySelector("#current-date");
 let currentDate = new Date();
 currentDateELement.innerHTML = formatDate(currentDate);
@@ -114,4 +133,3 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
 searchCity("Dortmund");
-displayForecast();
