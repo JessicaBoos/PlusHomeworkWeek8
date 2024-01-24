@@ -1,10 +1,9 @@
 function replaceIcon(condition) {
-  let iconElement = document.querySelector("#current-temperature-icon");
   let icon;
   var currentTime = new Date();
   var currentHour = currentTime.getHours();
 
-  if (condition === "clear sky") {
+  if (condition === "clear sky" || condition === "sky is clear") {
     if (currentHour >= 6 && currentHour < 18) {
       icon = "src/pictures/Weather-sun.png";
     } else {
@@ -16,16 +15,22 @@ function replaceIcon(condition) {
     icon = "src/pictures/Weather-scattered-clouds.png";
   } else if (condition === "broken clouds" || condition === "overcast clouds") {
     icon = "src/pictures/Weather-broken-clouds.png";
-  } else if (condition === "shower rain") {
+  } else if (condition === "shower rain" || condition === "moderate rain") {
     icon = "src/pictures/Weather-shower-rain.png";
-  } else if (condition === "rain") {
+  } else if (condition === "rain" || condition === "light rain") {
     icon = "src/pictures/Weather-rain.png";
+  } else if (
+    condition === "snow" ||
+    condition === "light snow" ||
+    condition === "rain and snow"
+  ) {
+    icon = "src/pictures/Weather-snow.png";
   } else if (condition === "thunderstorm") {
     icon = "src/pictures/Weather-thunderstorm.png";
   } else {
     icon = "src/pictures/Weather-mist.png";
   }
-  iconElement.innerHTML = `<img src="${icon}"class="weather-app-icon" />`;
+  return icon;
 }
 
 function updateWeather(response) {
@@ -39,8 +44,11 @@ function updateWeather(response) {
   humidityElement.innerHTML = `${response.data.temperature.humidity}%`;
   let windElement = document.querySelector("#weather-wind");
   windElement.innerHTML = `${response.data.wind.speed} km/h`;
-  replaceIcon(response.data.condition.description);
-  getForecast("response.data.city");
+  let iconElement = document.querySelector("#current-temperature-icon");
+  iconElement.innerHTML = `<img src="${replaceIcon(
+    response.data.condition.description
+  )}" class="weather-app-icon" />`;
+  getForecast(response.data.city);
 }
 
 function formatDay(timestamp) {
@@ -72,6 +80,7 @@ function displayForecast(response) {
         </div>
       </div>
       `;
+      console.log(day.condition.description);
     }
   });
 
