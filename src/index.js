@@ -3,32 +3,42 @@ function replaceIcon(condition) {
   var currentTime = new Date();
   var currentHour = currentTime.getHours();
 
-  if (condition === "clear sky" || condition === "sky is clear") {
-    if (currentHour >= 6 && currentHour < 18) {
-      icon = "src/pictures/Weather-sun.png";
-    } else {
-      icon = "src/pictures/Weather-moon.png";
-    }
-  } else if (condition === "few clouds") {
-    icon = "src/pictures/Weather-few-clouds.png";
-  } else if (condition === "scattered clouds") {
-    icon = "src/pictures/Weather-scattered-clouds.png";
-  } else if (condition === "broken clouds" || condition === "overcast clouds") {
-    icon = "src/pictures/Weather-broken-clouds.png";
-  } else if (condition === "shower rain" || condition === "moderate rain") {
-    icon = "src/pictures/Weather-shower-rain.png";
-  } else if (condition === "rain" || condition === "light rain") {
-    icon = "src/pictures/Weather-rain.png";
-  } else if (
-    condition === "snow" ||
-    condition === "light snow" ||
-    condition === "rain and snow"
-  ) {
-    icon = "src/pictures/Weather-snow.png";
-  } else if (condition === "thunderstorm") {
-    icon = "src/pictures/Weather-thunderstorm.png";
-  } else {
-    icon = "src/pictures/Weather-mist.png";
+  switch (condition) {
+    case "clear sky":
+    case "sky is clear":
+      icon =
+        currentHour >= 6 && currentHour < 18
+          ? "src/pictures/Weather-sun.png"
+          : "src/pictures/Weather-moon.png";
+      break;
+    case "few clouds":
+      icon = "src/pictures/Weather-few-clouds.png";
+      break;
+    case "scattered clouds":
+      icon = "src/pictures/Weather-scattered-clouds.png";
+      break;
+    case "broken clouds":
+    case "overcast clouds":
+      icon = "src/pictures/Weather-broken-clouds.png";
+      break;
+    case "shower rain":
+    case "moderate rain":
+      icon = "src/pictures/Weather-shower-rain.png";
+      break;
+    case "rain":
+    case "light rain":
+      icon = "src/pictures/Weather-rain.png";
+      break;
+    case "snow":
+    case "light snow":
+    case "rain and snow":
+      icon = "src/pictures/Weather-snow.png";
+      break;
+    case "thunderstorm":
+      icon = "src/pictures/Weather-thunderstorm.png";
+      break;
+    default:
+      icon = "src/pictures/Weather-mist.png";
   }
   return icon;
 }
@@ -80,7 +90,6 @@ function displayForecast(response) {
         </div>
       </div>
       `;
-      console.log(day.condition.description);
     }
   });
 
